@@ -4,12 +4,20 @@ import requests
 class HHParser:
     @staticmethod
     def __get_response_hh_employers():
+        """
+        Функция получения сведений по работодателям с открытыми вакансиями с сайта HeadHunter в JSON-формате
+        :return:
+        """
         params = {'sort_by': 'by_vacancies_open', 'per_page': 10}
         response = requests.get('http://api.hh.ru/employers', params=params)
         if response.status_code == 200:
             return response.json()['items']
 
     def get_employers(self):
+        """
+        Функция формирования списка работодателей по заданным критериям
+        :return:
+        """
         data_from_response = self.__get_response_hh_employers()
         employers_list = []
         for employer in data_from_response:
@@ -17,6 +25,10 @@ class HHParser:
         return employers_list
 
     def get_response_hh_vacancies(self):
+        """
+        Функция получения сведений о вакансиях у ранее отобранных работодателей с сайта HeadHunter
+        :return:
+        """
         employers_list = self.get_employers()
         vacancies_list = []
         for employer in employers_list:
@@ -28,7 +40,12 @@ class HHParser:
         return vacancies_list
 
     @staticmethod
-    def __get_filtered_vacancies(vacancies_list):
+    def __get_filtered_vacancies(vacancies_list: list):
+        """
+        Функция фильтрации и выборки имеющихся вакансий по заданным параметрам
+        :param vacancies_list:
+        :return:
+        """
         filtered_vacancies = []
         for vacancy in vacancies_list:
             if vacancy['salary'] is None:

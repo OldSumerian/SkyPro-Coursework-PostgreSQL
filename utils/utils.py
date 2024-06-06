@@ -3,7 +3,12 @@ from utils.config import config
 from classes.class_HHParser import HHParser
 
 
-def create_database(db_name):
+def create_database(db_name: str):
+    """
+    Функция по созданию базы данных по заданному пользователем имени
+    :param db_name:
+    :return:
+    """
     con = psycopg2.connect(dbname='postgres', **config())
     con.autocommit = True
     cur = con.cursor()
@@ -14,7 +19,12 @@ def create_database(db_name):
     con.close()
 
 
-def create_tables(db_name):
+def create_tables(db_name: str):
+    """
+    Функция по созданию в базе данных таблиц по предустановленным параметрам
+    :param db_name:
+    :return:
+    """
     con = psycopg2.connect(dbname=db_name, **config())
     with con:
         with con.cursor() as cur:
@@ -31,7 +41,12 @@ def create_tables(db_name):
     con.close()
 
 
-def fill_tables(db_name):
+def fill_tables(db_name: str):
+    """
+    Функция по внесению в таблицы данных, полученных в результате парсинга
+    :param db_name:
+    :return:
+    """
     hh = HHParser()
     employers = hh.get_employers()
     vacancies = hh.get_response_hh_vacancies()
@@ -47,44 +62,4 @@ def fill_tables(db_name):
                             (vacancy['vacancy_id'], vacancy['vacancy_name'],
                              vacancy['vacancy_link'], vacancy['salary_to'], vacancy['salary_from'],
                              vacancy['employer_id']))
-    con.close()
-
-
-def get_all_vacancies(db_name):
-    con = psycopg2.connect(dbname=db_name, **config())
-    with con:
-        with con.cursor() as cur:
-            cur.execute('SELECT ')
-    con.close()
-
-
-def get_avg_salary(db_name):
-    con = psycopg2.connect(dbname=db_name, **config())
-    with con:
-        with con.cursor() as cur:
-            cur.execute('SELECT ')
-    con.close()
-
-
-def get_companies_and_vacancies_count(db_name):
-    con = psycopg2.connect(dbname=db_name, **config())
-    with con:
-        with con.cursor() as cur:
-            cur.execute('SELECT ')
-    con.close()
-
-
-def get_vacancies_with_higher_salary(db_name):
-    con = psycopg2.connect(dbname=db_name, **config())
-    with con:
-        with con.cursor() as cur:
-            cur.execute('SELECT ')
-    con.close()
-
-
-def get_vacancies_with_keyword():
-    con = psycopg2.connect(dbname=db_name, **config())
-    with con:
-        with con.cursor() as cur:
-            cur.execute('SELECT ')
     con.close()
