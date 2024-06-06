@@ -64,5 +64,5 @@ class DBManager:
         :param key_word:
         :return:
         """
-        query = f'SELECT vacancy_name FROM vacancies WHERE vacancy_name LIKE "%{key_word}%"'
+        query = f"SELECT vacancy_name FROM vacancies WHERE vacancy_name LIKE '%{key_word}%'"
         return self.__execute_query(query)
