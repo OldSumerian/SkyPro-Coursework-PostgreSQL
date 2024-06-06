@@ -1,6 +1,7 @@
 from utils.utils import create_database, create_tables, fill_tables
 from classes.class_DBManager import DBManager
 
+
 def user_interface():
     """
     Функция пользовательского интерфейса
@@ -46,6 +47,7 @@ def user_interface():
                 print('Введено некорректное число')
         else:
             print('Попробуйте снова, вы ввели не число')
+
 
 if __name__ == '__main__':
     user_interface()
