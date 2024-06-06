@@ -8,10 +8,15 @@ Before to use you must create file 'database.ini' in root directory.
 
 This file must include next infomation and format:
 
-[postgresql]
-USER=*
-PASSWORD=*
-HOST=*
-PORT=*
+[postgresql]  
+
+USER=*  
+
+PASSWORD=*  
+
+HOST=*  
+
+PORT=*  
+
 
 * - your data (for example, HOST=localhost PORT=5432 etc.)
